@@ -99,3 +99,7 @@ fruits = [
     "hornedmelon",
     "naranjilla",
 ]
+
+animals = [
+    "ant", "bat"
+]
