@@ -101,5 +101,14 @@ fruits = [
 ]
 
 animals = [
-    "ant", "bat"
+    "ant", "bat", "bear", "bee", "bird", "boar", "bug", "cat", "cod", "cow", "crab", "crow", "deer", 
+    "dog", "dove", "duck", "eel", "elk", "fox", "frog", "goat", "hare", "hawk", "hen", "hog", 
+    "horse", "koi", "lion", "loon", "lynx", "mole", "moose", "moth", "mouse", "newt", "owl", "ox", 
+    "panda", "pig", "pike", "rat", "ray", "seal", "shark", "sheep", "skunk", "slug", "snail", 
+    "snake", "squid", "swan", "tiger", "toad", "trout", "tuna", "vole", "wasp", "wolf", "wren", 
+    "yak", "zebra", "alpaca", "bison", "camel", "civet", "cougar", "coyote", "dingo", "donkey", 
+    "ferret", "finch", "gecko", "gibbon", "gorilla", "guppy", "heron", "jackal", "jaguar", 
+    "lemur", "leopard", "llama", "magpie", "manatee", "mantis", "marten", "mink", "monkey", 
+    "narwhal", "ocelot", "otter", "puffin", "quail", "rabbit", "raven", "salmon", "sparrow", 
+    "stoat", "turkey", "urchin", "vulture", "weasel", "whale"
 ]
