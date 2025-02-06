@@ -1,4 +1,5 @@
 import random
+from random import shuffle
 
 letters = [
     "a",
@@ -66,23 +67,14 @@ class PasswordManager:
         self.pass_numbers = random.randint(2, 4)
 
     def generate_password(self):
-        password = ""
-        letters_length = len(letters) - 1
-        numbers_length = len(numbers) - 1
-        symbols_length = len(symbols) - 1
+        pass_letters = [random.choice(letters) for _ in range(0, self.pass_letters)]
+        pass_numbers = [random.choice(symbols) for _ in range(0, self.pass_symbols)]
+        pass_symbols = [random.choice(numbers) for _ in range(0, self.pass_symbols)]
 
-        for index in range(0, self.pass_letters):
-            password += letters[random.randint(0, letters_length)]
-
-        for index in range(0, self.pass_symbols):
-            password += symbols[random.randint(0, symbols_length)]
-
-        for index in range(0, self.pass_numbers):
-            password += numbers[random.randint(0, numbers_length)]
-
+        password = pass_letters + pass_numbers + pass_symbols
         # random.sample can use to shuffle the given sequence
         # and return a new list
-        shuffled_chars = random.sample(password, len(password))
+        shuffle(password)
 
         # joining the list as a string
-        return "".join(shuffled_chars)
+        return "".join(password)
