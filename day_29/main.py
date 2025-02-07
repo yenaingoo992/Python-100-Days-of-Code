@@ -4,6 +4,7 @@ from tkinter import messagebox
 from password_generator import PasswordManager
 import pandas
 
+
 def save():
     website = website_input.get().strip().title()
     email = email_input.get().strip()
@@ -46,10 +47,37 @@ def save():
     else:
         messagebox.showerror(title="Error!", message="Please don't leave any box empty!")
 
+
 def generate_password():
     random_password = PasswordManager().generate_password()
     password_input.delete(0, END)
     password_input.insert(0, random_password)
+
+
+def search_password():
+    file_path = "passwords.csv"
+    try:
+        df = pandas.read_csv(file_path)
+    except FileNotFoundError:
+        messagebox.showerror(title="Error!", message="No data file found!")
+    else:
+        website = website_input.get().strip().title()
+        email = email_input.get().strip()
+
+        if website != "" and email != "":
+            result = df[((df["website"] == website) & (df["email"] == email))]
+            if len(result) > 0:
+                result_email = result["email"].item()
+                result_password = result["password"].item()
+                messagebox.showinfo(title="Result",
+                                    message=f'Email: {result_email}\nPassword: {result_password}')
+            else:
+                messagebox.showerror(title="Error!", message=f"Not found your password for {website} with {email}")
+        else:
+            messagebox.showerror(title="Error!", message="Please enter website and email to search!")
+    finally:
+        website_input.delete(0, END)
+        password_input.delete(0, END)
 
 FONT = ("Times New Roman", 12, "normal")
 BG = "#ffffff"
@@ -70,7 +98,7 @@ password_label = Label(text="Password:", font=FONT, bg=BG)
 password_label.grid(row=3, column=0)
 
 website_input = Entry()
-website_input.grid(row=1, column=1, columnspan=2, sticky='EW')
+website_input.grid(row=1, column=1, sticky='EW')
 website_input.focus()
 
 email_input = Entry()
@@ -80,10 +108,13 @@ email_input.insert(0, "yenaingoo992@gmail.com")
 password_input = Entry()
 password_input.grid(row=3, column=1, sticky='EW')
 
-generate_button = Button(text="Generate Password", bg=BG, command= generate_password)
+generate_button = Button(text="Generate Password", bg=BG, command=generate_password)
 generate_button.grid(row=3, column=2)
 
 save_button = Button(text="Save", bg=BG, command=save)
 save_button.grid(row=4, column=1, columnspan=2, sticky='EW')
+
+search_button = Button(text="Search", width= 10, bg=BG, command=search_password)
+search_button.grid(row=1, column=2)
 
 window.mainloop()
